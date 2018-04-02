@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+  body {
+    padding: 100px;
+    width: 1000px;
+    margin: auto;
+    text-align: left;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    color: #121212;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Roboto', sans-serif;
+  }
+</style> 
+<title>CS 184 Final Project Proposal</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+<br />
+<h1 align="middle">Final Project Proposal</h1>
+    <h2 align="middle">Connor Worley 25261488, Jacob Hood 25549421, Albert Chen 25818036</h2>
+        <p></p>
+
+    <h2 align="middle">Problem Description</h2>
+        <p>We are trying to simulate the visual appearance of a hand-drawn cartoon style image using cel shading. This approach is used in frequently in video games and cartoons to give the appearance of a comic or cartoon without having to hand-draw animations frame-by-frame. Examples of technique in video games include Ōkami and The Legend of Zelda: Breath of the Wild. It is also used in television shows Knights of Sidonia and Archer. Cel shading simulates this visual style by discretizing transitions between light and dark areas rather than a smooth transition. The second component of this will be to trace outlines of the 3D model. This simulates the outlines that are typically found in cartoons or comics. The challenge for this part will be detecting edges and also creating convincing renders of the outlines. These outlines should vary in thickness depending on the lighting or texture of the subject.</p>
+        
+    <h2 align="middle">Goals and Deliverables</h2>
+        <p>1. What we plan to deliver:</p>
+        <p>In order to have a succussful project we must implement some form of cel shading along with outline drawing. Implementing cel shading will involve discretizing transitions between light and dark areas. One potential pitfall of this approach would be creating a posterized look rather than a hand-drawn look.</p>
+        <div align="center">
+            <table style="width=100%">
+                <tr>
+                    <td align="middle">
+                    <img src="./images/posterized.jpg" width="100%" />
+                    <figcaption align="middle">By Siddharth Patil (Own work) [<a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>], <a href="https://commons.wikimedia.org/wiki/File%3ALucidity_I.jpg">via Wikimedia Commons</a></figcaption>
+                </tr>
+            </table>
+        </div>
+
+        
+</br>
+        <p>2. What we hope to deliver:</p>
+        <p>If all goes well, we hope to implment an adaptive outline detection algorithm that will draw outlines of varying thickness depending on the lighting conditions to more accurately simulate hand-drawn outlines. For example, outlines for unlit areas are usually heavier than they are for brightly lit areas.</p>
+        
+    <h2 align="middle">Schedule</h2>
+        <p></p>
+
+    <h2 align="middle">Resources</h2>
+    <a href="https://raulreyesfinalproject.files.wordpress.com/2012/12/dissertation_cell-shading-raul_reyes_luque.pdf">source 1</a>
+    <a href="https://www.cs.rpi.edu/~cutler/classes/advancedgraphics/S12/final_projects/hutchins_kim.pdf">source 2</a>
+
+</div>
+</body>
+</html>
+
+
+
+
