@@ -21,48 +21,71 @@
 </head>
 <body>
 <br />
-<h1 align="middle">Final Project Milestone</h1>
-    <h2 align="middle">Connor Worley 25261488, Jacob Hood 25549421, Albert Chen 25818036</h2>
+<h1 align="left">Final Project Milestone</h1>
+<h2 align="left">Connor Worley 25261488, Jacob Hood 25549421, Albert Chen 25818036</h2>
+<hr size="1">
+    <div align="center">
+        <table style="width=100%">
+            <tr>
+                <td> <img src="./images/teapot3.png" height=150 /> </td>
+                <td> <img src="./images/teapot2.png" height=150 /> </td>
+                <td> <img src="./images/teapot1.png" height=150 /> </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2 align="left">Summary</h2>
+        <p>We have implemented basic two-tone cel shading along with outline drawing using the three.js framework from project 3-2. We are currently on-track with our proposed schedule.</p>
+        
+    <h3 align="left">Schedule</h3>
         <p></p>
-    <h2 align="middle">Summary</h2>
-        <p>We have implemented basic two-tone cel shading along with outline drawing using the three.js framework from project 3-2.</p>
-        <div align="center">
+        <div align="left">
             <table style="width=100%">
                 <tr>
-                    <td> <img src="./images/teapot3.png" height=150 /> </td>
-                    <td> <img src="./images/teapot2.png" height=150 /> </td>
-                    <td> <img src="./images/teapot1.png" height=150 /> </td>
+                    <p><del>Week 1: Aggregate the images, source code, meshes, etc.</del></p>
+                </tr>
+                <tr>
+                    <p><del>Week 2: Write cel shader for Lambertian surfaces</del></p>
+                </tr>
+                <tr>
+                    <p>Week 3: Extend cel shader program to refracting/reflecting surfaces, and (optimistic) implement X-Toon shading</p>
+                </tr>
+                <tr>
+                    <p>Week 4: Finish write-up, make video and presentation materials</p>
                 </tr>
             </table>
         </div>
 
-        </br>
         <a href="./gl/index.html">WebGL Demo</a>
+        </br>
+        <a href="https://docs.google.com/presentation/d/1PTBUbrLi48p-ogOW065GrStsQ_EsMdLmwHhScWTJyeM/edit#slide=id.g38c8ec9479_0_1">Presentation Slides</a>
+        </br>
 
-    <h2 align="middle">Diffuse Lighting</h2>
-        <p>Our implementation of diffuse cel shading uses the same formula used in the Blinn-Phong model for calculating reflectance of diffuse surfaces. We use only a light and a dark tone and color fragments using the light tone if the diffuse lighting component for that fragment is above a certain threshold, otherwise we use the dark tone.</p>
+    <h2 align="left">Diffuse Lighting</h2>
+        <p>Our implementation of diffuse cel shading uses the same formula used in the Blinn-Phong model for calculating reflectance of diffuse surfaces. We use only a light and a dark tone and color fragments using the light tone if the diffuse lighting component for that fragment is above a certain threshold, otherwise we use the dark tone. To prevent unsightly jaggies at the boundaries between the light and dark tones, we use the smoothstep function to interpolate values.</p>
         <div align="center">
             <img src="./images/teapot3.png" width=100% />
-            <figcaption align="middle">an example of cel shading (Giant Bomb)</figcaption>
         </div>
+        </br>
 
-    <h2 align="middle">Specular Highlights</h2>
+    <h2 align="left">Specular Highlights</h2>
         <p>Again we start with the Blinn-Phong shading model. Specular highlights for cartoons are usually a solid white color, so we used pure white for any fragments where the specular component of the Blinn-Phong shading model is above a certain threshold.</p>
             <img src="./images/teapot2.png" width=100% />
-            <figcaption align="middle">an example of cel shading (Giant Bomb)</figcaption>
         </div>
+        </br>
 
-    <h2 align="middle">Outlines</h2>
-        <p>Hand drawn cartoons will have dark outlines around objects. To simulate this effect we implemented a separate outline shader. The outline vetex shader detects vertices that lie on an outline by calculating the dot product of the vertex normal with the position of the camera relative to that vetex. Vertices that lie on an edge should have a surface normal that is closee to perpendicular to the view direction. These vertices will then have their positions shifed in the direction of the normal to raise them slightly above the surface. Finally this "inflated" model is the colored in with the outline color. Once this first pass is done we draw in the same model again using the cel shader. The second pass will occlude the first model except in places where it was inflated, leaving only a silhouette of the outline model visible.</p>
+    <h2 align="left">Outlines</h2>
+        <p>Hand drawn cartoons usually have dark outlines around objects. To simulate this effect we implemented a separate outline shader. The outline vetex shader detects vertices that lie on an outline by calculating the dot product of the vertex normal with the position of the camera relative to that vetex. Vertices that lie on an edge should have a surface normal that is close to perpendicular to the view direction. Vertices with a dot product below a certain threshold will then have their positions shifted in the direction of the normal to raise them slightly above the surface. The outline fragment shader simply colors all of the fragments of this "inflated" model with the outline color. Once this first pass is done we draw in the same model again using the cel shader. The second pass will occlude the first model except in places where it was inflated, leaving only a silhouette of the outline model visible. This technique is fast and simple and allows for different outline thicknesses by changing the amount that vertices are shifted.</p>
             <img src="./images/teapot1.png" width=100% />
-            <figcaption align="middle">an example of cel shading (Giant Bomb)</figcaption>
         </div>
+        </br>
         
-    <h2 align="middle">Next Steps</h2>
+    <h2 align="left">Next Steps</h2>
         <p>Currently we can render two-tone cel shaded objects with basic outlines. From here we can simulate more advanced artistic styles. This can be accomplished by using textures to simulate brush strokes or pencil strokes. Rather than use a step function to transition between different lighting zones, we can sample values from paint brush textures to simulate a watercolor or oil paint style. For outlines we can extend our current outline shader by using displacement to vary the roughness or thickness of outlines</p>
+        </br>
 
-    <h2 align="middle">Resources</h2>
-    <p>We will use the <a href="https://cs184.eecs.berkeley.edu/article/28">project 3-2 webGL renderer</a> as a starting point for this project.</p>
+    <h2 align="left">Resources</h2>
+    <p>We used the <a href="https://cs184.eecs.berkeley.edu/article/28">project 3-2 webGL renderer</a> as a starting point for this project.</p>
         <a href="https://en.wikipedia.org/wiki/Cel_shading">Wikipedia article on cel shading</a>
         </br>
         <a href="https://en.wikibooks.org/wiki/GLSL_Programming/Unity/Toon_Shading">Wikibooks article on toon shading</a>
