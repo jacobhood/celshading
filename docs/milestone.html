@@ -60,9 +60,10 @@
         </br>
         <a href="https://docs.google.com/presentation/d/1PTBUbrLi48p-ogOW065GrStsQ_EsMdLmwHhScWTJyeM/edit#slide=id.g38c8ec9479_0_1">Presentation Slides</a>
         </br>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/7cRGtnL3X44?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
     <h2 align="left">Diffuse Lighting</h2>
-        <p>Our implementation of diffuse cel shading uses the same formula used in the Blinn-Phong model for calculating reflectance of diffuse surfaces. We use only a light and a dark tone and color fragments using the light tone if the diffuse lighting component for that fragment is above a certain threshold, otherwise we use the dark tone. To prevent unsightly jaggies at the boundaries between the light and dark tones, we use the smoothstep function to interpolate values.</p>
+        <p>Our implementation of diffuse cel shading uses the same formula used in the Blinn-Phong model for calculating reflectance of diffuse surfaces. We use only a light and a dark tone to color fragments. If the diffuse lighting component for a fragment is above a certain threshold it is colored using the light tone, otherwise we use the dark tone. To prevent unsightly jaggies at the boundaries between the light and dark tones, we use the smoothstep function to interpolate values.</p>
         <div align="center">
             <img src="./images/teapot3.png" width=100% />
         </div>
@@ -81,7 +82,7 @@
         </br>
         
     <h2 align="left">Next Steps</h2>
-        <p>Currently we can render two-tone cel shaded objects with basic outlines. From here we can simulate more advanced artistic styles. This can be accomplished by using textures to simulate brush strokes or pencil strokes. Rather than use a step function to transition between different lighting zones, we can sample values from paint brush textures to simulate a watercolor or oil paint style. For outlines we can extend our current outline shader by using displacement to vary the roughness or thickness of outlines</p>
+        <p>Currently we can render two-tone cel shaded objects with basic outlines. From here we can simulate more advanced artistic styles. This can be accomplished by using textures to simulate brush strokes or pencil strokes. Rather than use a step function to transition between different lighting zones, we can sample values from paint brush textures to simulate a watercolor or oil paint style. For outlines we can extend our current outline shader by using displacement maps to vary the roughness or thickness of outlines</p>
         </br>
 
     <h2 align="left">Resources</h2>
