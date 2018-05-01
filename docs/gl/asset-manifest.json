@@ -1,8 +1,21 @@
 {
-  "main.css": "static/css/main.c452231c.css",
-  "main.css.map": "static/css/main.c452231c.css.map",
-  "main.js": "static/js/main.07811a11.js",
-  "main.js.map": "static/js/main.07811a11.js.map",
-  "static/media/toon.png": "static/media/toon.4813b99d.png",
-  "static/media/waves.png": "static/media/waves.7073d4ee.png"
+  "main.css": "static/css/main.e8628ebd.css",
+  "main.css.map": "static/css/main.e8628ebd.css.map",
+  "main.js": "static/js/main.81b1dde7.js",
+  "main.js.map": "static/js/main.81b1dde7.js.map",
+  "static/media/CBdragonNoWall.dae": "static/media/CBdragonNoWall.47f3f671.dae",
+  "static/media/bigBunny.dae": "static/media/bigBunny.28e14f15.dae",
+  "static/media/negx.jpg": "static/media/negx.b6aa494e.jpg",
+  "static/media/negy.jpg": "static/media/negy.66f622c7.jpg",
+  "static/media/negz.jpg": "static/media/negz.062ceb0d.jpg",
+  "static/media/paper.jpg": "static/media/paper.86698f49.jpg",
+  "static/media/phong3.png": "static/media/phong3.246bc878.png",
+  "static/media/phong4.png": "static/media/phong4.97890117.png",
+  "static/media/posx.jpg": "static/media/posx.754e1417.jpg",
+  "static/media/posy.jpg": "static/media/posy.b2735348.jpg",
+  "static/media/posz.jpg": "static/media/posz.2bb9568f.jpg",
+  "static/media/watercolor.jpg": "static/media/watercolor.0a4cae33.jpg",
+  "static/media/waterstroke.png": "static/media/waterstroke.96a29afd.png",
+  "static/media/waves.png": "static/media/waves.7073d4ee.png",
+  "static/media/wavesNoColor.png": "static/media/wavesNoColor.3ef3fd96.png"
 }
