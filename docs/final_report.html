@@ -76,7 +76,7 @@ In this shader, the diffuse term of the above is used to assign the point in que
     </div>
 
     <h3>X-toon Shading</h3>
-    <p>Now that we have implemented a simple cel shader, we can add another dimension of "detail" to our texture space. Commonly a function of distance, detail gives us greater control over the contrast of the various parts of an object which, for our purposes, roughly translates to the parts of an object further from the camera being shaded differently than parts closer to it. An example of such a texture map is shown below:</p>
+    <p>Now that we have implemented a simple cel shader, we can add another dimension of "detail" to our texture space. Our simple cel shader did the equivalent of sampling from a 1-D texture using the diffuse component of the Blinn-Phong model. With X-Toon shading, we sample from a 2-D texture using the same diffuse component for one of the dimensions and a second detail dimension. Commonly a function of distance, detail gives us greater control over the contrast of the various parts of an object which, for our purposes, roughly translates to the parts of an object further from the camera being shaded differently than parts closer to it. An example of such a texture map is shown below:</p>
     <div align="middle">
         <img src="./images/xtoon.png" align="middle"/>
         <figcaption align="middle">Note: in this and the following examples, "detail" is a function of distance.</figcaption>
@@ -85,31 +85,22 @@ In this shader, the diffuse term of the above is used to assign the point in que
     <div align="middle">
         <img src="./images/texturerabbit.png"/>
     </div>
+
     <p>This method of shading can also be used to achieve other effects, such as a backlit effect as pictured here:</p>
     <div align="middle">
-        <tr>
-            <td align="middle">
-                <img src="./images/teapottexture.png"/>
-                <figcaption align="middle">The texture used to render the teapot with a backlit effect</figcaption>
-            </td>
-            <td align="middle">
-                <img src="./images/xteapot.png"/>
+        <table style="width=100%">
+        <tr align="middle">
+            <td>
+                <img src="./images/xteapot.png" height=250/>
                 <figcaption align="middle">A backlit teapot</figcaption>
             </td>
+            <td>
+                <img src="./images/phong7.png" height=250/>
+                <figcaption align="middle">The texture used</figcaption>
+            </td>
         </tr>
+        </table>
     </div>
-
-    <h2 align="left">X-Toon Shading</h2>
-        <p>Again we start with the Blinn-Phong shading model. Instead of sampling from a 1-D texture using the dot-product of the normal and the camera ray, we sample a 2-D texture using the dot-product of the normal with the camera angle as the u coordinate and a detail heuristic as the v coordinate. The detail coordinate can be distance from the camera, to simulate loss of detail as depth increases or the dot-product of the normal with the light-camera half-angle in order to simulate specular highlights.</p>
-            <img src="./images/teapot2.png" width=100% />
-        </div>
-        </br>
-
-    <h2 align="left">Outlines</h2>
-        <p>Hand drawn cartoons usually have dark outlines around objects. To simulate this effect we implemented a separate outline shader. The outline vetex shader detects vertices that lie on an outline by calculating the dot product of the vertex normal with the position of the camera relative to that vetex. Vertices that lie on an edge should have a surface normal that is close to perpendicular to the view direction. Vertices with a dot product below a certain threshold will then have their positions shifted in the direction of the normal to raise them slightly above the surface. The outline fragment shader simply colors all of the fragments of this "inflated" model with the outline color. Once this first pass is done we draw in the same model again using the cel shader. The second pass will occlude the first model except in places where it was inflated, leaving only a silhouette of the outline model visible. This technique is fast and simple and allows for different outline thicknesses by changing the amount that vertices are shifted.</p>
-            <img src="./images/teapot1.png" width=100% />
-        </div>
-        </br>
 
     <h2 align="left">Watercolor Shading</h2>
         <p>One interesting usage of cel-shading is with watercolor shading. The algorithm we used involved three shader passes, the first of which is simply the X-Toon shader described earlier with outline drawing. The second pass uses a paper texture to displace the colors of the first pass. Finally, the third pass uses sobel edge-detection to selectively darken the edges of the image.</p>
@@ -155,6 +146,15 @@ In this shader, the diffuse term of the above is used to assign the point in que
                     \(\begin{bmatrix} 1& 2& 1\\ 0& 0& 0\\ -1& -2& -1 \end{bmatrix}\)
                     <figcaption align="middle">vertical</figcaption>
                 </td>
+            </tr>
+        </table>
+    </div>
+    <div align="center">
+        <table style="width=100%">
+            <tr>
+                <td> <img src="./images/water1.png" width=250 /> </td>
+                <td> <img src="./images/water2.png" width=250 /> </td>
+                <td> <img src="./images/water3.png" width=250 /> </td>
             </tr>
         </table>
     </div>
