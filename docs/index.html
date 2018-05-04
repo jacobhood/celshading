@@ -3,9 +3,11 @@
 <head>
 <style>
   body {
+    display: block;
     padding: 100px;
     width: 1000px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     text-align: left;
     font-weight: 300;
     font-family: 'Roboto', sans-serif;
@@ -18,67 +20,93 @@
 <title>CS 184 Final Project Proposal</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
 </head>
 <body>
 <br />
-<h1 align="middle">Final Project Proposal</h1>
+<h1 align="middle">Final Project Report</h1>
     <h2 align="middle">Connor Worley 25261488, Jacob Hood 25549421, Albert Chen 25818036</h2>
         <p></p>
-    <h2 align="middle">Summary</h2>
-        <p>We want to implement shading techniques that allow for the rendering of non-photorealistic images based on 3D models. Though sharing the general approach of the photorealistic shading techniques we implemented in previous projects, some subtle adjustments to these techniques are required to render images in a deliberately unrealistic, cartoonish style.</p>
+    <h2 align="middle">Abstract</h2>
+        <p>The goal of this project was to implement shading techniques that allow for the rendering of non-photorealistic images based on 3D models. Though sharing the general approach of the photorealistic shading techniques we implemented in project 3-2, some subtle adjustments to these techniques are required to render images in a deliberately unrealistic, cartoonish style. This is desirable in several settings of computer graphics, particularly in cartoon and video game animation. We implemented a basic cel shading routine and an extension thereof&mdash;X-toon shading. This involves adding a dimension to our previously one-dimensional texture map; instead of assigning color exclusively based on the diffuse term of the Blinn-Phong model, we add an axis of "detail" (commonly a function of distance) such that at greater detail, there is greater differentiation of color, and at the lowest detail, there is no differentiation of color. Having implemented an X-toon shading routine, we could then extend that to give objects the appearance of being watercolor painted by using a suitable 2D texture map.</p>
         <div align="center">
-            <img src="./images/link.jpg" width="256" />
-            <figcaption align="middle">an example of cel shading (Giant Bomb)</figcaption>
+            <img src="./images/celpot.png"/>
+            <figcaption align="middle">A result of our simple cel shader</figcaption>
         </div>
-
-    <h2 align="middle">Problem Description</h2>
-        <p>We will start with the same “raw materials” as we do with photorealistic shading―a 3D model from which we can extract information about surface normals, intersections with light rays, material properties, and so on. The diffuse, Blinn-Phong, or texture map-based shading methods used in project 3-2 will not suffice for this task; instead, the shading method we use must use surface normal information and proximity to light sources to color the surface in strictly lighter or darker shades of a given color, which as pictured below give the image the appearance of being drawn by hand, when it was in fact rendered from the same kind of mesh we have shaded with photorealistic techniques. This general approach to shading is known as cel shading.</p>
-        <div align="center">
-            <a title="By User:NicolasSourd (Own work) [GFDL (http://www.gnu.org/copyleft/fdl.html), CC-BY-SA-3.0 (http://creativecommons.org/licenses/by-sa/3.0/) or CC BY 2.5 (http://creativecommons.org/licenses/by/2.5)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File%3ACelshading_teapot_large.png"><img width="512" alt="Celshading teapot large" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Celshading_teapot_large.png/512px-Celshading_teapot_large.png"/></a>
-            <figcaption align="middle">an example of cel shading (wikipedia)</figcaption>
-        </div>
-        <p>This approach is used in frequently in video games and cartoons to give the appearance of a comic or cartoon without having to hand-draw animations frame-by-frame. Examples of technique in video games include Ōkami and The Legend of Zelda: Breath of the Wild. It is also used in television shows Knights of Sidonia and Archer. Cel shading simulates this visual style by discretizing transitions between light and dark areas rather than a smooth transition. The second component of this will be to trace outlines of the 3D model. This simulates the outlines that are typically found in cartoons or comics.</p>
-        
-    <h2 align="middle">Goals and Deliverables</h2>
-        <p>1. What we plan to deliver:</p>
-        <p>In order to have a succussful project we must implement some form of cel shading along with outline drawing in a way that produces aesthetically pleasing, cartoon-style images from 3D scenes. Our shading should also work in conjunction with texture mapping to allow for textured surfaces. One potential pitfall of this approach would be creating a posterized look rather than a hand-drawn look.</p>
-        <div align="center">
-            <a title="By Siddharth Patil (Own work) [CC0], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File%3ALucidity_I.jpg"><img width="512" alt="Lucidity I" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Lucidity_I.jpg/512px-Lucidity_I.jpg"/></a>
-            <figcaption align="middle">posterized image of a hibiscus (wikimedia)</figcaption>
-        </div>
-        <p>
-        The user should be able to view the scene from a variety of angles, and interactively move the camera around using the keyboard and mouse. We expect real-time performance of around 30 frames/second, using the WebGL framework provided for project 3-2. We will evaluate the quality of our renders by visual comparison with existing cel shading renders produced by tools like Blender.</p>
-
-</br>
-        <p>2. What we hope to deliver:</p> 
-        <p>If we finish our initial goals ahead of schedule, we plan to also implement X-Toon shading (Barla, P., Thollot, J., and Markosian, L. 2006) to add specular highlighting and backlighting to our scenes. We should produce results similar to those seen in <a href="https://www.youtube.com/watch?v=fxrcGrNZNwQ">this video</a>.
-        If all goes well, we also hope to implment an adaptive outline detection algorithm that will draw outlines of varying thickness depending on the lighting conditions to more accurately simulate hand-drawn outlines. For example, outlines for unlit areas are usually heavier than they are for brightly lit areas.</p>
-        
-    <h2 align="middle">Schedule</h2>
-        <p></p>
-        <div align="center">
-            <table style="width=100%">
-                <tr>
-                    <p>Week 1: Aggregate the images, source code, meshes, etc.</p>
-                </tr>
-                <tr>
-                    <p>Week 2: Write cel shader for Lambertian surfaces</p>
-                </tr>
-                <tr>
-                    <p>Week 3: Extend cel shader program to refracting/reflecting surfaces, and (optimistic) implement X-Toon shading</p>
-                </tr>
-                <tr>
-                    <p>Week 4: Finish write-up, make video and presentation materials</p>
-                </tr>
-            </table>
-        </div>
-
-        </br>
-        <a href="./milestone.html">Milestone Report</a>
-
-    <h2 align="">Schedule</h2>
-    <h2 align="middle">Resources</h2>
-    <p>We will use the <a href="https://cs184.eecs.berkeley.edu/article/28">project 3-2 webGL renderer</a> as a starting point for this project.</p>
+    <h2 align="middle">Technical Approach</h2>
+    <h3 align="middle">Simple Cel Shader</h3>
+    <p>We start with the same raw materials as the shader programs implemented in project 3-2, i.e. a 3D mesh object from which we can extract information about surface normals, proximity to the camera and light sources, and so on. We can use this data to inform our simple cel shader in a way similar to before, though with some modifications, which will be detailed in this section. First, to compute the diffuse reflection of a point on the surface of the object, we first consider the Blinn-Phong model:
+    <div lang="latex">
+        L = k_{a}I_{a} + k_{d}\left(\frac{I}{r^2}\right)max\left(0, \bf{n \cdot l }\right) + k_{s}\left(\frac{I}{r^2}\right)max\left(0, \bf{n \cdot h} \right)^{p}
+    </div>
+    In this shader, the diffuse term of the above is used to assign the point in question to one of two "buckets" of shades of the same color. In other words, before we compute anything, we decide on the color we would like the object to have, then compute the diffuse term given the desired point, and depending on which range of values this term occupies, the point is imbued with the corresponding shade. We discretize the shades because it mimics the desired aesthetic; in hand-drawn cartoon images, the parts of an object further from the light source are often drawn in a darker shade of the same color as the rest of the object.
+    </p>
+    <div align="center">
+        <img src="./images/exampleface.png" align="middle" height= "300" width="512"/>
+        <figcaption align="middle">A black and white (and grey) hand-drawn image that demonstrates this notion of shading</figcaption>  
+    </div>
+    <p>The following image is the result of our renderer after this stage of shading, that is, after the calculation of diffuse terms and assignments to color buckets.</p>
+    <div align="center">
+        <img src="./images/teapot3.png" align="middle"/>
+    </div>
+    <p>We consider now specular reflection. The example below shows how in hand-drawn images, specular reflection is implied by highlighting the proper points on the object with a bright white.</p>
+    <div align="center">
+        <img src="./images/apple.jpg" align="middle"/>
+    </div>
+    <p>In the spirit of discretization, we mimic this effect by setting a threshold minimum value of the specular term for which specular reflection occurs. If the specular term as computed in the Blinn-Phong model is greater than or equal to this threshold value, specular reflection occurs and the proper points are shaded a bright white. This threshold value is determined empirically. We see the results of adding this to the previous render:</p>
+    <div align="center">
+        <img src="./images/teapot2.png" align="middle"/>
+    </div>
+    <p>Our render so far, while having the desired colors, seems flat, especially in a still image. We resolve this by adding a black outline to the edges of the object. To do this, however, we need the program to be able to detect edges to begin with. If the normal vector of a point on the object is close enough to orthogonal to the camera direction (the exact margin for error is again determined empirically), we consider the point to be on an edge of the object, apply a small perturbation to the point in the direction of its normal, and fill the resulting gap with a black outline of appropriate thickness. The complete routine gives us this as the final image:</p>
+    <div align="center">
+        <img src="./images/teapot4.png" align="middle"/>
+    </div>
+    <h3>X-toon Shading</h3>
+    <p>Now that we have implemented a simple cel shader, we can add another dimension of "detail" to our texture space. Commonly a function of distance, detail gives us greater control over the contrast in of the various parts of an object which, for our purposes, roughly translates to the parts of an object further from the camera being shaded differently than parts closer to it. An example of such a texture map is shown below:</p>
+    <div align="middle">
+        <img src="./images" align="middle"/>
+        <figcaption align="middle">Note: in this and the following examples, "detail" is a function of distance.</figcaption>
+    </div>
+    <p>Notice how the buckets of color are computed using the diffuse term of the Blinn-Phong model as before, but in this case we allow for gradation along the color dictated by these buckets such that at the lowest detail all points are imbued with the same shade of a component color of our original buckets. Adding this axis allows us to more accurately simulate the way in which cartoon images are often drawn, where differences in color in the forefront of the scene are more apparent, whereas the background of a scene tends to blend together. Here is an image of the texture above applied to our favorite rabbit:</p>
+    <div align="middle">
+        <img src="./images/texturerabbit.png"/>
+    </div>
+    <p>This method of shading can also be used to achieve other effects, such as a backlit effect as pictured here:</p>
+    <div align="middle">
+        <tr>
+            <td align="middle">
+                <img src="./images/teapottexture.png"/>
+                <figcaption align="middle">The texture used to render the teapot with a backlit effect</figcaption>
+            </td>
+            <td align="middle">
+                <img src="./images/backlitteapot.png"/>
+                <figcaption align="middle">A backlit teapot</figcaption>
+            </td>
+        </tr>
+    </div>
+    <h3>Watercolor Effect</h3>
+    <p>Having implemented X-Toon shading, we can with a few additional procedures use it to render objects with a watercolor texture. First the image is rendered using X-Toon shading according to a chosen texture map. Then, a brush stroke texture is mapped onto the outline of the image to give it a varying thickness. A paper texture is next superimposed onto the resulting image to displace the colors, and finally we apply the Sobel filter to the entire image, which emphasizes the outlines of the image.</p>
+    <div align="middle">
+    <table>
+        <tr>
+            <td align="middle">
+                <img src="./images"/>
+            </td>
+            <td align="middle">
+                <img src="./images"/>
+            </td>
+            <td align="middle">
+                <img src="./images"/>
+            </td>
+        </tr>
+    </table>
+    <p>Textures used in the watercolor render below</p>
+    <div align="middle">
+        <img src="./images" />
+        <figcaption align="middle">A complete watercolor render</figcaption>
+    </div>
+    <div>
+        <table>
         <a href="https://en.wikipedia.org/wiki/Cel_shading">Wikipedia article on cel shading</a>
         </br>
         <a href="https://en.wikibooks.org/wiki/GLSL_Programming/Unity/Toon_Shading">Wikibooks article on toon shading</a>
@@ -90,6 +118,7 @@
         <a href="https://raulreyesfinalproject.files.wordpress.com/2012/12/dissertation_cell-shading-raul_reyes_luque.pdf">The Cel Shading Technique by Raul Reyes Luque</a>
         </br>
         <a href="http://maverick.inria.fr/Publications/2006/BTM06a/x-toon.pdf">X-Toon: An Extended Toon Shader by Pascal Barla, Joelle Thollot, and Lee Markosian</a>
+    </table>
 
 </div>
 </body>
