@@ -78,7 +78,7 @@ In this shader, the diffuse term of the above is used to assign the point in que
     <h3>X-toon Shading</h3>
     <p>Now that we have implemented a simple cel shader, we can add another dimension of "detail" to our texture space. Our simple cel shader did the equivalent of sampling from a 1-D texture using the diffuse component of the Blinn-Phong model. With X-Toon shading, we sample from a 2-D texture using the same diffuse component for one of the dimensions and a second detail dimension. Commonly a function of distance, detail gives us greater control over the contrast of the various parts of an object which, for our purposes, roughly translates to the parts of an object further from the camera being shaded differently than parts closer to it. An example of such a texture map is shown below:</p>
     <div align="middle">
-        <img src="./images/xtoonmap.png" align="middle"/>
+        <img src="./images/phong4.png" align="middle"/>
         <figcaption align="middle">Note: in this and the following examples, "detail" is a function of distance.</figcaption>
     </div>
     <p>Notice how the buckets of color (along the horizontal axis) are computed using the diffuse term of the Blinn-Phong model as before, but in this case we allow for gradation along the vertical axis of the color dictated by these buckets such that at the lowest detail all points are imbued with the same shade of a component color of our original buckets. Adding this axis allows us to more accurately simulate the way in which cartoon images are often drawn, where differences in color in the forefront of the scene are more apparent, whereas the background of a scene tends to blend together. Here is an image of the texture above applied to our favorite rabbit:</p>
