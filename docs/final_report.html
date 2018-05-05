@@ -33,11 +33,7 @@
     The goal of this project was to implement shading techniques that allow for the rendering of non-photorealistic images based on 3D models. Though sharing the general approach of the photorealistic shading techniques we implemented in project 3-2, some subtle adjustments to these techniques are required to render images in a deliberately unrealistic, cartoonish style. This is desirable in several settings of computer graphics, particularly in cartoon and video game animation. We implemented a basic cel shading routine and an extension thereof—X-toon shading. This involves adding a dimension to our previously one-dimensional texture map; instead of assigning color exclusively based on the diffuse term of the Blinn-Phong model, we add an axis of "detail" (commonly a function of distance) such that at greater detail, there is greater differentiation of color, and at the lowest detail, there is no differentiation of color. Having implemented an X-toon shading routine, we could then extend that to give objects the appearance of being watercolor painted by using a suitable 2D texture map.
     </p>
 
-        <a href="./gl/index.html">WebGL Demo</a>
-        </br>
-        <a href=https://docs.google.com/presentation/d/18QYDbl6Jnc9I3eLy1TaSx6tZB763O2f4imHJ5gCAbGk/edit#slide=id.g392abcd5cc_0_24>Presentation Slides</a>
-        </br>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/7cRGtnL3X44?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe width="1000" height="315" src="https://www.youtube.com/embed/7cRGtnL3X44?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
     <h2 align="left">Simple Cel Shading</h2>
     <p>
@@ -49,15 +45,6 @@ $$L = k_{a}I_{a} + k_{d}\left(\frac{I}{r^2}\right)max\left(0, \bf{n \cdot l }\ri
     <p>
 In this shader, the diffuse term of the above is used to assign the point in question to one of two "buckets" of shades of the same color. In other words, before we compute anything, we decide on the color we would like the object to have, then compute the diffuse term given the desired point, and depending on which range of values this term occupies, the point is imbued with the corresponding shade. We discretize the shades because it mimics the desired aesthetic; in hand-drawn cartoon images, the parts of an object further from the light source are often drawn in a darker shade of the same color as the rest of the object.
     </p>
-    <div align="center">
-        <table style="width=100%">
-            <tr>
-                <td> <img src="./images/teapot3.png" height=150 /> </td>
-                <td> <img src="./images/teapot2.png" height=150 /> </td>
-                <td> <img src="./images/teapot1.png" height=150 /> </td>
-            </tr>
-        </table>
-    </div>
 
     <p>
     The following image is the result of our renderer after this stage of shading, that is, after the calculation of diffuse terms and assignments to color buckets.
@@ -122,6 +109,16 @@ In this shader, the diffuse term of the above is used to assign the point in que
 
     $$color_2[uv] = color_1[uv_{disp}] - (paper_{rgb}[uv_{orig}] * G)$$
 
+    <p>We experimented with several different paper textures. The textures that we liked the most were the watercolor paper texture and the wave texture.</p>
+    <div align="center">
+        <table style="width=100%">
+            <tr>
+                <td> <img src="./images/papertexture.png" width=250 height=250 /> <figcaption align="middle">watercolor paper</figcaption> </td>
+                <td> <img src="./images/wavesNoColor.png" width=250 height=250 /> <figcaption align="middle">wave</figcaption> </td>
+            </tr>
+        </table>
+    </div>
+
     <h3 align="left">Third Pass</h3>
     <p>One of key characteristics of watercolor paintings is edge-darkening that occurs when wet watercolor flows out of the paintbrush and pools at the edges of each brushstroke. This effect can be achieved by using a sobel filter to selectively darken areas where there is a color change.</p>
 
@@ -152,9 +149,9 @@ In this shader, the diffuse term of the above is used to assign the point in que
     <div align="center">
         <table style="width=100%">
             <tr>
-                <td> <img src="./images/water1.png" width=250 /> </td>
-                <td> <img src="./images/water2.png" width=250 /> </td>
-                <td> <img src="./images/water3.png" width=250 /> </td>
+                <td> <img src="./images/water1.png" width=250 /> <figcaption align="middle">first pass</figcaption> </td>
+                <td> <img src="./images/water2.png" width=250 /> <figcaption align="middle">second pass</figcaption> </td>
+                <td> <img src="./images/water3.png" width=250 /> <figcaption align="middle">third pass</figcaption> </td>
             </tr>
         </table>
     </div>
@@ -169,6 +166,7 @@ In this shader, the diffuse term of the above is used to assign the point in que
     <div>
     <p>
     <a href="https://jacobhood.github.io/celshading/gl/">Here</a> is an interactive webpage with our results.</p>
+    <a href=https://docs.google.com/presentation/d/18QYDbl6Jnc9I3eLy1TaSx6tZB763O2f4imHJ5gCAbGk/edit#slide=id.g392abcd5cc_0_24>Presentation Slides</a>
     </div>
     <h2 align="left">References</h2>
     <p>We used the <a href="https://cs184.eecs.berkeley.edu/article/28">project 3-2 webGL renderer</a> as a starting point for this project.</p>
