@@ -75,7 +75,7 @@ In this shader, the diffuse term of the above is used to assign the point in que
         <img src="./images/teapot4.png" align="middle" width=500/>
     </div>
 
-    <h3>X-toon Shading</h3>
+    <h2>X-toon Shading</h2>
     <p>Now that we have implemented a simple cel shader, we can add another dimension of "detail" to our texture space. Our simple cel shader did the equivalent of sampling from a 1-D texture using the diffuse component of the Blinn-Phong model. With X-Toon shading, we sample from a 2-D texture using the same diffuse component for one of the dimensions and a second detail dimension. Commonly a function of distance, detail gives us greater control over the contrast of the various parts of an object which, for our purposes, roughly translates to the parts of an object further from the camera being shaded differently than parts closer to it. An example of such a texture map is shown below:</p>
     <div align="middle">
         <img src="./images/xtoon.png" align="middle"/>
@@ -159,7 +159,13 @@ In this shader, the diffuse term of the above is used to assign the point in que
         </table>
     </div>
 
-    <h2 align="left">Resources</h2>
+    <h2>Challenges</h2>
+    <p>The biggest challenges with this project were learning WebGL and working around the limitations of vertex/fragment shaders. The watercolor shader was especially challenging because it requires multiple passes and reading from the framebuffer. We initially tried to implement the watercolor shader in a single pass but quickly ran into problems when trying to displace colors or apply sobel filters. We went through a lot headache trying to find a way to read the values of neighbor pixels to no avail. Another big challenge was debugging. We did not know how to use any of the available OpenGL debugging tools with our WebGL renderer so we resorted to using shaders to visually debug our program. We wrote shaders that would color our renders according to values like normal direction, screen coordinates, or depth in order to visually whether our calculated values were correct. This was a very time consuming way to debug, but it allowed us to very quickly determine whether something was wrong.</p>
+
+    <h2>Lessons Learned</h2>
+    <p>The biggest lesson that we learned was that shader programs are very limited. Fragments and vertices have little to now information about any of their neighbors and are all processed in isolation. We learned about what is and is not possible with shader programs and what kinds of workloads need to be done in pre/post processing. We also learned a lot about how to effectively debugging shaders.</p>
+
+    <h2 align="left">References</h2>
     <p>We used the <a href="https://cs184.eecs.berkeley.edu/article/28">project 3-2 webGL renderer</a> as a starting point for this project.</p>
         <a href="https://en.wikipedia.org/wiki/Cel_shading">Wikipedia article on cel shading</a>
         </br>
